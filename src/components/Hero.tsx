@@ -4,7 +4,7 @@ interface Props {
     title: string;
     image: string;
 }
-export const Hero = ({ title, image }: Props) => {
+const Hero: React.FC<Props> = ({ title, image }: Props) => {
     return (
         <div className="flex row justify-center items-center gap-4 h-screen">
             <div className="w-4/12">
@@ -16,3 +16,5 @@ export const Hero = ({ title, image }: Props) => {
         </div>
     );
 };
+
+export default Hero;

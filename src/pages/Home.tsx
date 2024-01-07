@@ -7,6 +7,8 @@ const Home: React.FC = () => {
         <div>
             <Link to="/first-task">Go to User 42 Page</Link>
             <hr />
+            <Link to="/component-generator">Go to component generator</Link>
+            <hr />
         </div>
     );
 };

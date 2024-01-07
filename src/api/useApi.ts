@@ -12,6 +12,12 @@ const useApi = () => ({
         });
         return promise;
     },
+    post: async (url: string, data: object): Promise<boolean> => {
+        return fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+        }).then((response) => (response.ok ? true : false));
+    },
 });
 
 export default useApi;

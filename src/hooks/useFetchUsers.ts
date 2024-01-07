@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 
-import UserApi from '../api/UserApi';
+import FatCatApi from '../api/FatCatApi';
 import UserBasicInfo from '../models/UserBasicInfo';
 
 const useFetchUsers = (): UserBasicInfo[] => {
-    const { data } = UserApi().get.useUsers();
+    const { data } = FatCatApi().get.useApiGetUsers();
     const options = useMemo(() => {
         const users = (data || [])?.map((user) => ({
             id: user.id,

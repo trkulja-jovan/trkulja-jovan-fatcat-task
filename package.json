@@ -17,13 +17,16 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@hookform/resolvers": "^3.3.4",
         "@tanstack/react-query": "^5.17.5",
         "clsx": "^2.0.0",
         "react-countup": "^6.5.0",
         "react-fast-marquee": "^1.6.2",
+        "react-hook-form": "^7.49.2",
         "react-router-dom": "^6.21.1",
         "rollup": "^4.9.3",
-        "source-map-loader": "^4.0.2"
+        "source-map-loader": "^4.0.2",
+        "yup": "^1.3.3"
     },
     "devDependencies": {
         "@babel/core": "^7.23.7",
