@@ -42,7 +42,6 @@ const FormPage: React.FC = () => {
     const submitFn = (data?: FormDataModel) =>
         FatCatApi().post.useApiPostFormData<FormDataModel>(data);
 
-    const submitButtonClassName = 'button-is-success is-light ml-3 mt-4';
     return (
         <CreateForm<FormDataModel>
             formElements={formElements}
@@ -50,7 +49,6 @@ const FormPage: React.FC = () => {
             submitApiFn={submitFn}
             title="This is a form title"
             successMessage="Form has submitted!"
-            submitButtonClassName={submitButtonClassName}
         />
     );
 };

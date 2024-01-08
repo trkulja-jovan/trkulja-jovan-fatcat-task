@@ -13,8 +13,9 @@
         "noImplicitThis": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
         "paths": {
-            "@homeworkTask/*": ["./src/*"] 
+            "@homework-task/*": ["src/*"] 
         }
     },
     

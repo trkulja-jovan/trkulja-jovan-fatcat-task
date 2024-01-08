@@ -1,144 +1,43 @@
-## Complete the following tasks
+1. PROJECT DOWNLOAD, SETUP, AND LAUNCH
+Firstly, in order to start the project, it's necessary to have Node.js installed along with the npm tool. I used the following versions:
+  - npm version: 10.2.3
+  - node version: 20.10.0
 
-### Transfer the project to TypeScript
+The development environment is Visual Studio Code. Node and npm are installed directly on the computer. npm is installed together with Node.js. Link for download:
+  - npm + node: https://nodejs.org/en/download
 
-Your first task involves transitioning this project 
-from JavaScript to TypeScript. To ensure a robust 
-and type-safe codebase, please configure TypeScript
-with the following compiler options:
-* "noImplicitAny": true
-* "strict": true
-* "strictNullChecks": true
-* "noImplicitThis": true
+Clone the project from the following git repository: https://github.com/trkulja-jovan/trkulja-jovan-fatcat-task
+After cloning, open it in the development environment.
 
-Additionally, implement import aliases in your project
-configuration. Set up your imports to use the format
-***@homework-task/path/to/file.ts***.
+The next step is to install TypeScript. It can be installed locally for the project or globally on the entire computer. The commands are as follows:
+  - global installation: npm install -g typescript
+  - local installation: npm install typescript --save-dev
 
-In the ***src/components*** folder, you will find several
-components. Your goal is to enhance these components with
-appropriate TypeScript interfaces and types.
+Commands are executed in the terminal. If you're using the VS Code environment, go to Terminal -> New Terminal.
 
-### Create a List Component
+If you've successfully completed all previous steps, run the command npm install to install all libraries used in the project.
+After that step, simply run npm start, and the application will launch.
 
-Develop a React component that is both scalable and reusable,
-designed to fetch and display data from an API in a list
-format. The specific API endpoint to be used is
-https://jsonplaceholder.typicode.com/users. For each item 
-in the list, ensure that the following keys are displayed:
-***id***, ***name***, ***email***, ***dateOfBirth***, and ***phone***.
+2. TASK IMPLEMENTATION
+2.1 LOADING USER LIST
+The first task involved transferring an existing template project from JS to TS. Transitioning the project to TS involved:
+  - converting all .js and .jsx files to .ts and .tsx and adjusting components to TypeScript
+  - creating tsconfig.json and webpack.config.js files to configure the project
 
+2.2 USER LIST LOADING
+The second task focused on loading a list of users from a specific link and displaying them in the appropriate format. It was achieved as follows:
+  - FatCatAPI was created as the "centralizer" for all API calls in the application.
+  - useApi was created with two functions (get and post) to communicate with the server. useAPI was strictly written generically, not tied to a specific server. Additionally, return types use <T> generically for added flexibility.
+  - The UserListPage fetches users via the useFetchUsers() hook, which calls the FatCatAPI getUser function. Upon receiving the response, it maps it to the appropriate object and returns a list of loaded users as a result.
+  - The page calls the UserList component, passing the list of users as a parameter to display them in the desired format.
 
-### Create a Form Generator Component
+2.3 COMPONENT FORM GENERATOR
+The third task involved creating a component capable of rendering a form and performing corresponding actions.
+The component accepts a validation schema for validating the form input.
+HtmlFormElement is the model the component exports for users to define form elements via its props. Once users define a list of HtmlFormElements, they need to pass it as props to the CreateForm component.
+To allow the component to accept any user model, it's <T> generic, but it's necessary for the user's model used for the form to inherit from BaseFormModel. The generateFormElement function renders each HTMLFormElement in the list. Currently, the component supports two elements (input and textarea), but it can easily be expanded to use other types as well.
+The Submit function is implemented as a POST and handles the generic type <T>, expecting any type that will be parsed into JSON and sent to the appropriate URL.
 
-1. Develop a scalable and reusable React component with the
-following capabilities:
-
-* **Validation Schema:** Accept a validation schema prop to ensure form data adheres to specified rules.
-* **API Hook Call:** Incorporate an API hook that handles states such as data, isLoading, and isError.
-* **Callback Function for Form Rendering:** Implement a callback function prop (renderForm) that renders the form elements and handles their state appropriately.
-
-2. Component Implementation:
-* Utilize this component to create a form with two fields:
-  * Input Field (‘title’): A required field with a maximum character limit.
-  * Textarea Field (‘body’): Also a required field with a maximum character limit.
-* Both fields should display error messages if the input doesn't meet the criteria set by the validation schema.
-* For form submissions, use the POST method at https://jsonplaceholder.typicode.com/posts.
-
-Recommended libraries, but you can use whatever you prefer:
-* ***React Query:*** For handling API calls.
-* ***Zod:*** For defining the validation schema.
-* ***React Hook Form:*** For managing form state, submission, and logic.
-
-Alternatively, you're free to use any library or custom solution that aligns with the above requirements.
-
-Component Example **(this does not have to be the exact implementation)**:
-
-```tsx
-<CreateForm<ICreateCycleFormInputs>
-    useMutation={useSomeMutation}
-    validationSchema={someSchema}
-    successMessage="Successfully created something"
-    renderForm={({ register, errors }) => (
-        <>
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="name"
-                label="Name"
-                error={!!errors.name}
-                helperText={errors.name?.message}
-                autoFocus
-                {...register('name')}
-            />
-        </>
-    )}
-/>
-```
-
-
-### Create a Page Generator Component
-Your task is to create a reusable React component for
-building web pages. This component should be designed 
-to handle a variety of page layouts and components 
-dynamically, based on the props it receives.
-* ***Dynamic Layout Handling:*** The component must handle different page layouts.
-* ***Scalability and Reusability:*** It should be easily scalable to accommodate future layout types and be reusable across different pages.
-* ***Prop Structure:*** The main prop is an array of objects, each representing a section of the page with its own layout and components.
-  * Each object in this array contains:
-    * type: identifying the layout type.
-    * components: an array of objects, each describing a component to be rendered in this section.
-    * props: properties specific to that layout (ex. background color)
-  * Each component object has:
-    * type: the type of the component (e.g., 'componentHero').
-    * props: properties specific to that component.
-
-You can use the components provided in src/components. If you desire, you can 
-add your own components or change the existing ones.
-
-Here is an example of the props that the component should accept:
-
-```ts
-const data = [
-    {
-        type: 'layoutSection',
-        props: { ...layoutProps},
-        components: [
-            {
-                type: 'componentHero',
-                props: {...componentProps},
-            },
-        ],
-    },
-    {
-        type: 'layoutSection',
-        props: { ...layoutProps},
-        components: [
-            {
-                type: 'componentItemsShowcase',
-                props: {...componentProps},
-            },
-            {
-                type: 'componentTrustBar',
-                props: {...componentProps},
-            },
-        ],
-    },
-];
-
-```
-
-### Additional Requirements
-You will have to complete all of these for your task to be considered done.
-
-* Follow the eslint and prettier rules set by the project; you must not use any ts-ignore or disable eslint.
-* It must contain a Readme.md file that has instructions on how to run the project as well as a brief explanation of how you have implemented these features. In the project, there is already a Readme.md file present feel free to override it completely.
-* Your code must follow the latest rules and conventions
-* You have to have checks for typescript and eslint that disallow you to commit any changes that cause errors.
-* There should be no TypeScript or Eslint errors in your code.
-* Feel free to add your own touch to these tasks
-* Keep in mind that you will have to expand upon this solution in the technical interview
-
-
-### Note: You can override this document
+2.4 COMPONENT PAGE GENERATOR
+The final task required creating a component capable of accepting a list of components in the appropriate format and displaying them on the screen. For this purpose, the ComponentGenerator component was created, accepting componentList as well as a render function to display them on the screen.
+The component is written generically so it can render any type of component. It's essential to adhere to the models the component uses.

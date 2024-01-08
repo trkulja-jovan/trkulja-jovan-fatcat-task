@@ -11,7 +11,6 @@ interface CreateFormProps<T> {
     defaultValues?: T;
     title: string;
     successMessage?: string;
-    submitButtonClassName?: string;
 }
 
 export interface HtmlFormElement {
@@ -31,7 +30,6 @@ const CreateForm = <T extends BaseFormModel>({
     defaultValues,
     title,
     successMessage,
-    submitButtonClassName,
 }: CreateFormProps<T>) => {
     type ValSchemaType = z.infer<typeof validationSchema>;
     const [isError, setIsError] = useState(false);
@@ -100,9 +98,7 @@ const CreateForm = <T extends BaseFormModel>({
                         {generateFormElement(el)}
                     </div>
                 ))}
-                <button className={submitButtonClassName} type="submit">
-                    Submit form
-                </button>
+                <button type="submit">Submit form</button>
             </form>
             {!isError && isSuccess && (
                 <p className="has-text-success mt-3 mr-3 is-size-4">
