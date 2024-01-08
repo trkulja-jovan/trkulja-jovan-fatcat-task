@@ -1,4 +1,6 @@
-interface FormDataModel {
+import { BaseFormModel } from '../components/CreateForm';
+
+interface FormDataModel extends BaseFormModel {
     userId: number;
     id: number;
     title: string;

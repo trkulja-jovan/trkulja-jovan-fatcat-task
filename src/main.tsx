@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bulma/css/bulma.min.css';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import ReactDOM from 'react-dom/client';
