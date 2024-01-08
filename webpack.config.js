@@ -1,4 +1,5 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 
 const webpackConfig = {
     mode: 'development',
@@ -30,7 +31,12 @@ const webpackConfig = {
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['', '.tsx', '.ts', '.js'],
+        plugins: [
+            new TsconfigPathsPlugin({
+                configFile: './tsconfig.json',
+            }),
+        ],
     },
     plugins: [
         new HtmlWebpackPlugin({

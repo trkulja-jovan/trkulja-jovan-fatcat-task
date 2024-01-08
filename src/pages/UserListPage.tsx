@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import UserList from '../components/UserList';
 import useFetchUsers from '../hooks/useFetchUsers';
 
-const FirstTask: React.FC = () => {
+const UserListPage: React.FC = () => {
     const options = useFetchUsers();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -23,4 +23,4 @@ const FirstTask: React.FC = () => {
     );
 };
 
-export default FirstTask;
+export default UserListPage;

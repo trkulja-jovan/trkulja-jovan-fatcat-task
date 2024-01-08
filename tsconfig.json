@@ -13,7 +13,10 @@
         "noImplicitThis": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
+        "paths": {
+            "@homeworkTask/*": ["./src/*"] 
+        }
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", "./vite.config.ts"],
+    
     "exclude": ["node_modules"]
 }
